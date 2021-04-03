@@ -1148,17 +1148,143 @@ namespace LeetCode
                 }
             }
 
-            public class 1603ParkingSystem
+            public class ParkingSystem1603
             {
+                int _big;
+                int _med;
+                int _small;
 
-                public ParkingSystem(int big, int medium, int small)
+                public ParkingSystem1603(int big, int medium, int small)
                 {
-
+                    _big = big;
+                    _med = medium;
+                    _small = small;
                 }
 
                 public bool AddCar(int carType)
                 {
+                    if (carType == 1 && _big > 0)
+                    {
+                        _big -= 1;
+                        return true;
+                    } else if(carType == 2 && _med > 0)
+                    {
+                        _med -= 1;
+                        return true;
+                    }
+                    else if(carType == 3 &&  _small > 0)
+                    {
+                        _small -= 1;
+                        return true;
+                    }
+                    return false;
+                }
+            }
 
+            public class Solution1528
+            {
+                public string RestoreString(string s, int[] indices)
+                {
+                    char[] chars = new char[indices.Length];
+                    for (int i = 0; i < indices.Length; i++)
+                    {
+                        chars[indices[i]] = s[i];
+                    }
+                    return new string(chars);
+                }
+            }
+
+            public class Solution1773
+            {
+                public int CountMatches(IList<IList<string>> items, string ruleKey, string ruleValue)
+                {
+                    int matches = 0;
+                    int indexToCheck;
+                    if(ruleKey == "type")
+                    {
+                        indexToCheck = 0;
+                    } else if(ruleKey == "color")
+                    {
+                        indexToCheck = 1;
+                    } else
+                    {
+                        indexToCheck = 2;
+                    }
+                    for (int i = 0; i < items.Count; i++)
+                    {
+                        if(items[i][indexToCheck] == ruleValue)
+                        {
+                            matches++;
+                        }
+                    }
+                    return matches;
+                }
+            }
+
+            public class Solution1678
+            {
+                public string Interpret(string command)
+                {
+                    string result = "";
+                    for (int i = 0; i < command.Length; i++)
+                    {
+                        if(command[i] == 'G')
+                        {
+                            result += "G";
+                        }else if(command[i] == '(' && command[i+1] == ')')
+                        {
+                            i++;
+                            result += "o";
+                        }
+                        else
+                        {
+                            i += 3;
+                            result += "al";
+                        }
+                    }
+                    return result;
+                }
+            }
+
+            public class Solution1614
+            {
+                public int MaxDepth(string s)
+                {
+                    if (s == "")
+                    {
+                        return 0;
+                    }
+                    int depth = 0;
+                    int open = 0;
+                    for (int i = 0; i < s.Length; i++)
+                    {
+                        if(s[i] == '(')
+                        {
+                            open++;
+                            if(open > depth)
+                            {
+                                depth = open;
+                            }
+                        }else if(s[i] == ')')
+                        {
+                            open--;
+                        }
+                    }
+                    return depth;
+                }
+
+                public class Solution1720
+                {
+                    public int[] Decode(int[] encoded, int first)
+                    {
+                        int[] n = new int[encoded.Length+1];
+                        n[0] = first;
+                        for (int i = 0; i < encoded.Length; i++)
+                        {
+                            n[i+1] = n[i] ^ encoded[i];
+                        }
+                        return n;
+                    }
                 }
             }
         }
