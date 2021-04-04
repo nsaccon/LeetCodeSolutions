@@ -139,12 +139,49 @@ class Solution1281(object):
             sum += num
         return prod - sum
 
-class Solution(object):
+class Solution1313(object):
     def decompressRLElist(self, nums):
         intLst = []
         for i in range(0,len(nums),2):
             intLst += [nums[i+1]]*nums[i]
         return intLst
+
+
+class Solution1773(object):
+    def countMatches(self, items, ruleKey, ruleValue):
+        count = 0
+        rules = ["type", "color", "name"]
+        ruleIndex = rules.index(ruleKey)
+        for item in items:
+            if item[ruleIndex] == ruleValue:
+                count += 1
+        return count
+
+class Solution1678(object):
+    def interpret(self, command):
+        ans = ""
+        i = 0
+        while i < len(command):
+            if command[i] == "G":
+                ans += "G"
+                i += 1
+            elif command[i+1] == ")":
+                ans += "o"
+                i += 2
+            else:
+                ans += "al"
+                i += 4
+        return ans
+
+
+class Solution1720(object):
+    def decode(self, encoded, first):
+        decoded = [first]
+        index = 0
+        for num in encoded:
+            decoded += (decoded[index] ^ num)
+            index += 1
+        return decoded
         
 
 
