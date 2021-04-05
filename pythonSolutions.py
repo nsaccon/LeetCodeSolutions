@@ -182,7 +182,25 @@ class Solution1720(object):
             decoded += (decoded[index] ^ num)
             index += 1
         return decoded
-        
 
 
+class Solution1389(object):
+    def createTargetArray(self, nums, index):
+        targetArray = []
+        for i in range(len(nums)):
+            targetArray = targetArray[:index[i]] + [nums[i]] + targetArray[index[i]:]
+        return targetArray
         
+
+class Solution1221(object):
+    def balancedStringSplit(self, s):
+        found = 0
+        offset = 0
+        for letter in s:
+            if letter == "R":
+                offset += 1
+            else:
+                offset -= 1
+            if(not offset):
+                found += 1
+        return found
