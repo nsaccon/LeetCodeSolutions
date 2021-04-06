@@ -26,7 +26,8 @@ class Solution1470(object):
             numLst.append(nums[i])
             numLst.append(nums[i+n])
         return numLst
-        
+
+
 class Solution1431(object):
     def kidsWithCandies(self, candies, extraCandies):
         ans = []
@@ -34,6 +35,7 @@ class Solution1431(object):
         for kid in candies:
             ans.append((kid + extraCandies) >= most)
         return ans
+
 
 class Solution1672(object):
     def maximumWealth(self, accounts):
@@ -51,7 +53,7 @@ class Solution1512(object):
     def numIdenticalPairs(self, nums):
         count = 0
         for i in range(len(nums)):
-            for j in range(i+1,len(nums)):
+            for j in range(i+1, len(nums)):
                 if(nums[i] == nums[j]):
                     count += 1
         return count
@@ -65,6 +67,7 @@ class Solution771(object):
                 count += 1
         return count
 
+
 class ParkingSystem1603(object):
     _big = 0
     _med = 0
@@ -74,7 +77,6 @@ class ParkingSystem1603(object):
         self._big = big
         self._med = medium
         self._small = small
-        
 
     def addCar(self, carType):
         if carType == 1 and self._big > 0:
@@ -88,6 +90,7 @@ class ParkingSystem1603(object):
             return True
         return False
 
+
 class Solution1365(object):
     def smallerNumbersThanCurrent(self, nums):
         ans = []
@@ -100,8 +103,9 @@ class Solution1365(object):
             ans.append(more)
         return ans
 
+
 class Solution1342(object):
-    def numberOfSteps (self, num):
+    def numberOfSteps(self, num):
         curr = num
         step = 0
         while curr > 0:
@@ -116,6 +120,7 @@ class Solution1342(object):
                 step += 1
         return step
 
+
 class Solution1528(object):
     def restoreString(self, s, indices):
         length = len(indices)
@@ -123,11 +128,12 @@ class Solution1528(object):
         ans = ""
         for i in range(length):
             newStr[indices[i]] = s[i]
-        
+
         for x in newStr:
             ans += x
         return ans
-        
+
+
 class Solution1281(object):
     def subtractProductAndSum(self, n):
         numStrLst = list(str(n))
@@ -139,10 +145,11 @@ class Solution1281(object):
             sum += num
         return prod - sum
 
+
 class Solution1313(object):
     def decompressRLElist(self, nums):
         intLst = []
-        for i in range(0,len(nums),2):
+        for i in range(0, len(nums), 2):
             intLst += [nums[i+1]]*nums[i]
         return intLst
 
@@ -156,6 +163,7 @@ class Solution1773(object):
             if item[ruleIndex] == ruleValue:
                 count += 1
         return count
+
 
 class Solution1678(object):
     def interpret(self, command):
@@ -188,9 +196,10 @@ class Solution1389(object):
     def createTargetArray(self, nums, index):
         targetArray = []
         for i in range(len(nums)):
-            targetArray = targetArray[:index[i]] + [nums[i]] + targetArray[index[i]:]
+            targetArray = targetArray[:index[i]] + \
+                [nums[i]] + targetArray[index[i]:]
         return targetArray
-        
+
 
 class Solution1221(object):
     def balancedStringSplit(self, s):
@@ -204,3 +213,29 @@ class Solution1221(object):
             if(not offset):
                 found += 1
         return found
+
+
+class Solution1486(object):
+    def xorOperation(self, n, start):
+        ans = 0
+        for i in range(n):
+            ans = ans ^ (start + 2 * i)
+        return ans
+
+# Definition for a binary tree node.
+class TreeNode(object):
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+class Solution938(object):
+    def rangeSumBST(self, root, low, high):
+        total = 0
+        if(root.val >= low and root.val <= high):
+            total += root.val
+        if root.left is not None:
+            total += self.rangeSumBST(root.left, low, high)
+        if root.right is not None:
+            total += self.rangeSumBST(root.right, low, high)
+        return total
