@@ -1,3 +1,10 @@
+# Definition for a binary tree node.
+class TreeNode(object):
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
 class Solution1480(object):
     def runningSum(self, nums):
         newNums = []
@@ -222,12 +229,6 @@ class Solution1486(object):
             ans = ans ^ (start + 2 * i)
         return ans
 
-# Definition for a binary tree node.
-class TreeNode(object):
-    def __init__(self, val=0, left=None, right=None):
-        self.val = val
-        self.left = left
-        self.right = right
 
 class Solution938(object):
     def rangeSumBST(self, root, low, high):
@@ -238,4 +239,77 @@ class Solution938(object):
             total += self.rangeSumBST(root.left, low, high)
         if root.right is not None:
             total += self.rangeSumBST(root.right, low, high)
+        return total
+
+class Solution1614(object):
+    def maxDepth(self, s):
+        pars = 0
+        depth = 0
+        for letter in s:
+            if letter == "(":
+                pars += 1
+            elif letter == ")":
+                pars -= 1
+            if pars > depth:
+                depth = pars
+        return depth
+            
+class Solution1662(object):
+    def arrayStringsAreEqual(self, word1, word2):
+        string1 = ""
+        string2 = ""
+        for i in range(len(word1)):
+            string1 += word1[i]
+        for x in range(len(word2)):
+            string2 += word2[x]
+            if(not string2 == string1[:len(string2)]):
+                return False
+        return string1 == string2
+
+class OrderedStream1656(object):
+    stream = []
+    length = -1
+    nextIndexToReturn = 0
+
+    def __init__(self, n):
+        self.stream = [""]*n
+        self.length = n
+
+    def insert(self, idKey, value):
+        self.stream[idKey-1] = value
+        returnStream = []
+        if idKey-1 == self.nextIndexToReturn:
+            indexFilledTo = self.length
+            for i in range(idKey,self.length):
+                if self.stream[i] == "":
+                    indexFilledTo = i
+                    break
+            returnStream = self.stream[idKey-1:indexFilledTo]
+            self.nextIndexToReturn = indexFilledTo
+        return returnStream
+
+
+class Solution1684(object):
+    def countConsistentStrings(self, allowed, words):
+        offset = 97
+        canHave = [False]*26
+        valid = 0
+        for letter in allowed:
+            canHave[ord(letter)-offset] = True
+        for word in words:
+            valWord = True
+            for letter in word:
+                if not canHave[ord(letter)-offset]:
+                    valWord = False
+                    break
+            if valWord:
+                valid += 1
+        return valid
+
+class Solution1588(object):
+    def sumOddLengthSubarrays(self, arr):
+        total = 0
+        for i in range(1,len(arr)+1,2):
+            for j in range(len(arr)-i+1):
+                total += sum(arr[j:j+i])
         return total
