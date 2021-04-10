@@ -313,3 +313,17 @@ class Solution1588(object):
             for j in range(len(arr)-i+1):
                 total += sum(arr[j:j+i])
         return total
+
+
+class Solution1688(object):
+    def numberOfMatches(self, n):
+        count = 0
+        while n > 1:
+            if n % 2 != 0:
+                count += (n-1) / 2
+                n = ((n-1) / 2) + 1
+            else:
+                count += n / 2
+                n = n / 2
+        return count
+        
