@@ -326,4 +326,25 @@ class Solution1688(object):
                 count += n / 2
                 n = n / 2
         return count
+
+class Solution709(object):
+    def toLowerCase(self, str):
+        offset = 32
+        lower = ""
+        for letter in str:
+            letterNum = ord(letter)
+            if letterNum >= 65 and letterNum <= 90:
+                lower += chr(letterNum+offset)
+            else:
+                lower += letter
+        return lower
+
+class Solution1266(object):
+    def minTimeToVisitAllPoints(self, points):
+        seconds = 0
+        currentPoint = points[0]
+        for i in range(1,len(points)):
+            seconds += max(abs(points[i][1] - currentPoint[1]), abs(points[i][0] - currentPoint[0]))
+            currentPoint = points[i]
+        return seconds
         
