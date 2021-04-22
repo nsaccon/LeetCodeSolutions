@@ -347,4 +347,27 @@ class Solution1266(object):
             seconds += max(abs(points[i][1] - currentPoint[1]), abs(points[i][0] - currentPoint[0]))
             currentPoint = points[i]
         return seconds
+
+class Solution557:
+    def reverseWords(self, s: str) -> str:
+        words = s.split(' ')
+        for i in range(len(words)):
+            words[i] = words[i][::-1]
+        return ' '.join(words)
+
+class RecentCounter933:
+    CACHE_DELAY = 3000
+    def __init__(self):
+        self.callCache = []
         
+
+    def ping(self, t: int) -> int:
+        ans = 1
+        replaceChache = []
+        for call in self.callCache:
+            if t - call <= RecentCounter933.CACHE_DELAY:
+                ans += 1
+                replaceChache.append(call)
+        replaceChache.append(t)
+        self.callCache = replaceChache
+        return ans
