@@ -1,3 +1,5 @@
+from typing import List
+import math
 # Definition for a binary tree node.
 class TreeNode(object):
     def __init__(self, val=0, left=None, right=None):
@@ -371,3 +373,38 @@ class RecentCounter933:
         replaceChache.append(t)
         self.callCache = replaceChache
         return ans
+
+class Solution1828:
+
+    def countPoints(self, points: List[List[int]], queries: List[List[int]]) -> List[int]:
+        ans = []
+        for circle in queries:
+            pointsInside = 0
+            for point in points:
+                if self.pointsDistance(point, circle) <= circle[2]:
+                    pointsInside += 1
+            ans.append(pointsInside)
+        return ans
+
+    def pointsDistance(self, point1: List[int], point2: List[int]) -> int:
+        x = (point1[0]-point2[0]) ** 2
+        y = (point1[1]-point2[1]) ** 2
+        return math.sqrt(x + y)
+
+class Solution1769:
+    def minOperations(self, boxes: str) -> List[int]:
+        ans = []
+        for j in range(len(boxes)):
+            steps = 0
+            for i in range(len(boxes)):
+                
+                if int(boxes[i]):
+                    steps += abs(j-i)
+            ans.append(steps)
+        return ans
+            
+
+
+
+
+        

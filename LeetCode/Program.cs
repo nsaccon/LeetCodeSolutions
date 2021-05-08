@@ -837,7 +837,6 @@ namespace LeetCode
                 {
                     const int OFFSET = 96;
                     string ans = "";
-                    int nextStart = 0;
                     for (int i = 0; i < s.Length; i++)
                     {
                         if(i <= s.Length-3 && s[i+2] == '#')
