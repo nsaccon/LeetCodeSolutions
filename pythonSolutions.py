@@ -402,9 +402,24 @@ class Solution1769:
                     steps += abs(j-i)
             ans.append(steps)
         return ans
-            
 
+class Solution1880:
+    def isSumEqual(self, firstWord: str, secondWord: str, targetWord: str) -> bool:
+        return self.wordToNum(firstWord) + self.wordToNum(secondWord) == self.wordToNum(targetWord)
 
+    def wordToNum(self, word: str) -> int:
+        lettersAsNums = ""; 
+        for letter in word:
+            lettersAsNums += str(ord(letter)-97)
+        return int(lettersAsNums)
 
-
-        
+class Solution1768:
+    def mergeAlternately(self, word1: str, word2: str) -> str:
+        mergedWord = ""
+        for iLetter in range(0, len(word1)):
+            mergedWord += word1[iLetter]
+            if iLetter < len(word2):
+                mergedWord += word2[iLetter]
+        if len(word2) > len(word1):
+            mergedWord += word2[len(word1):]
+        return mergedWord
